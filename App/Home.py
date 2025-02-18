@@ -1,14 +1,25 @@
-def home():
+from App import Timer
+from rich import print
 
-    print("Pomodoro Tracker")
-    print("[s]Start")
-    print("[f]Finish")
+
+def home():
 
     key = " "
 
-    while key != "s" and key != "f" :
+    while key != "f":
+        print("[bold magenta]Pomodoro Tracker")
+        print("( s ) [green]Start")
+        print("( f ) [red]Finish")
+        print("Current Streak [bold magenta]13")
+        print("Longest Streak [blue]14")
+
         key = input("")
+
         if key != "s" and key != "f":
             print("This key don't exist, please select")
+        elif key == "s":
+            Timer.Timer()
+
 
     print(f"you press {key} congrats")
+
