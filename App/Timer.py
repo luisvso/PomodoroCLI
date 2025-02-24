@@ -7,8 +7,8 @@ def Timer():
     breaks = int(input("What is your break time?"))
 
     #The countdown function to run the time
-    countdown(focus)
-    breaker(breaks)
+    sessions_loop(focus,breaks,sessions)
+    
 
 
 def countdown(f):
@@ -42,10 +42,17 @@ def breaker(breaker):
                     time.sleep(0.9)
                     seconds-=1
                     progress.update(task, advance=1) 
-                print("The break if over") 
+                print("The break if over")
 
 
-    
+#Trakcs the sessions of the loop
+def sessions_loop(f,b,s):
+    #make a loop for every session until goes to zero
+    while s != 0:
+        #call the functions responsible for the timer
+        print("Current session: " ,s)
+        countdown(f)
+        breaker(b)
+        s -=1
 
-def sessions_loop(s):
-    ...
+    print("Congrats, your focus was: ", (f*2)/60, " Hours")
