@@ -19,7 +19,3 @@ def home():
             print("This key don't exist, please select")
         elif key == "s":
             Timer.Timer()
-
-
-    print(f"you press {key} congrats")
-
