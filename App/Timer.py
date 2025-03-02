@@ -2,21 +2,24 @@ import time
 from rich.progress import Progress
 
 def Timer():
-    sessions = int(input("Ho many sessions you are going to take?"))
-    focus = int(input("What is your focus time?"))
-    breaks = int(input("What is your break time?"))
+    try:
+        sessions = int(input("Ho many sessions you are going to take?"))
+        focus = int(input("What is your focus time?"))
+        breaks = int(input("What is your break time?"))
 
-    #The countdown function to run the time
-    sessions_loop(focus,breaks,sessions)
+        #The countdown function to run the time
+        sessions_loop(focus,breaks,sessions)
+    except ValueError:
+        print("This value is wrong, please insert another valid one")
     
 
 
 def countdown(f):
-    respond = "nao"
-    while respond == "nao":
+    respond = "no"
+    while respond == "no":
         respond = input("You want to start the focusing timer?")
 
-    if(respond == "sim"):
+    if(respond == "yes"):
         with Progress() as progress:
             seconds = f * 60
             task = progress.add_task("Focusing....", total=seconds)
@@ -28,14 +31,14 @@ def countdown(f):
 
 
 def breaker(breaker):
-    respond = "nao"
-    while respond == "nao":
+    respond = "no"
+    while respond == "no":
         respond = input("Start Break?")
 
 
-    if respond == "sim":
+    if respond == "yes":
         seconds = breaker * 60
-        if(respond == "sim"):
+        if(respond == "yes"):
             with Progress() as progress:
                 task = progress.add_task("Resting....", total=seconds)
                 for i in range(seconds):
