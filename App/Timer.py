@@ -48,11 +48,12 @@ def breaker(breaker):
 #Trakcs the sessions of the loop
 def sessions_loop(f,b,s):
     #make a loop for every session until goes to zero
-    while s != 0:
+    current_session = 1
+    while current_session <= s:
         #call the functions responsible for the timer
-        print("Current session: " ,s)
+        print("Current session: " , current_session ,  "/" , s)
         countdown(f)
         breaker(b)
-        s -=1
+        current_session +=1
 
     print("Congrats, your focus was: ", (f*2)/60, " Hours")
