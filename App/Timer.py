@@ -56,4 +56,5 @@ def sessions_loop(f,b,s):
         breaker(b)
         current_session +=1
 
-    print("Congrats, your focus was: ", (f*2)/60, " Hours")
+    print("Congrats, your focus was: ", "{:.2f}".format((f*2)/60)  , " Hours")
+
