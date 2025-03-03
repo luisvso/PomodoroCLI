@@ -1,5 +1,5 @@
 import time
-from rich.progress import Progress
+from rich.progress import Progress, BarColumn, TaskProgressColumn
 
 def Timer():
     try:
@@ -15,37 +15,49 @@ def Timer():
 
 
 def countdown(f):
-    respond = "no"
-    while respond == "no":
+    respond = "n"
+    while respond == "n":
         respond = input("You want to start the focusing timer?")
 
-    if(respond == "yes"):
-        with Progress() as progress:
+    if(respond == "y"):
+        with Progress(
+            BarColumn(),
+            TaskProgressColumn()
+        ) as progress:
             seconds = f * 60
             task = progress.add_task("Focusing....", total=seconds)
-            for i in range(seconds):
-                time.sleep(0.9)
-                seconds-=1
+
+
+
+            for _ in range(seconds):
+                time.sleep(1)
                 progress.update(task, advance=1)
             print("⏰ Time's up!") 
 
 
 def breaker(breaker):
-    respond = "no"
-    while respond == "no":
+    respond = "n"
+    while respond == "n":
         respond = input("Start Break?")
 
 
-    if respond == "yes":
+    if respond == "y":
         seconds = breaker * 60
-        if(respond == "yes"):
-            with Progress() as progress:
+        if(respond == "y"):
+            with Progress(
+                BarColumn(),
+                TaskProgressColumn()
+            ) as progress:
                 task = progress.add_task("Resting....", total=seconds)
-                for i in range(seconds):
-                    time.sleep(0.9)
+
+
+                for _ in range(seconds):
+                    time.sleep(1)
                     seconds-=1
                     progress.update(task, advance=1) 
                 print("The break if over")
+    else:
+        print("This value dont exist")
 
 
 #Trakcs the sessions of the loop
