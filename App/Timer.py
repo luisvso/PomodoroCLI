@@ -1,5 +1,6 @@
 import time
 from rich.progress import Progress, BarColumn, TaskProgressColumn
+from database.database import connectionDB
 
 def Timer():
     try:
@@ -16,22 +17,34 @@ def Timer():
 
 def countdown(f):
     respond = "n"
+
+
     while respond == "n":
         respond = input("You want to start the focusing timer?")
 
     if(respond == "y"):
         with Progress(
             BarColumn(),
-            TaskProgressColumn()
+            TaskProgressColumn(),
         ) as progress:
             seconds = f * 60
             task = progress.add_task("Focusing....", total=seconds)
 
+            print("\n Press [ space ] to pause and resume")
+
+            elased = 0
+            start_timer = time.monotonic()
 
 
-            for _ in range(seconds):
+            elased = time.monotonic() - start_timer
+
+            while elased < seconds:
+                time.sleep(0.1)
+
+                elased +=1
                 time.sleep(1)
                 progress.update(task, advance=1)
+
             print("⏰ Time's up!") 
 
 
@@ -71,5 +84,4 @@ def sessions_loop(f,b,s):
         breaker(b)
         current_session +=1
 
-    print("Congrats, your focus was: ", "{:.2f}".format((f*2)/60)  , " Hours")
-
+    print("Congrats, your focus was: ", "{:.2f}".format((f*s)/60)  , " Hours")
