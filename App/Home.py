@@ -12,6 +12,7 @@ def home():
         print("( f ) [red]Finish")
         print("Current Streak [bold magenta]13")
         print("Longest Streak [blue]14")
+        print("How many Hours Studied in 2025: number")
 
         key = input("")
 
