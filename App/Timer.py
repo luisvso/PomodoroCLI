@@ -1,6 +1,5 @@
 import time
 from rich.progress import Progress, BarColumn, TaskProgressColumn
-from database.database import connectionDB
 
 def Timer():
     try:
@@ -12,8 +11,6 @@ def Timer():
         sessions_loop(focus,breaks,sessions)
     except ValueError:
         print("This value is wrong, please insert another valid one")
-    
-
 
 def countdown(f):
     respond = "n"
