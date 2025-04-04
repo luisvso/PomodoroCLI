@@ -17,7 +17,7 @@ def countdown(f):
 
 
     while respond == "n":
-        respond = input("You want to start the focusing timer?")
+        respond = input("You want to start the focusing timer?").lower().strip()
 
     if(respond == "y"):
         with Progress(
@@ -44,12 +44,15 @@ def countdown(f):
 
             print("⏰ Time's up!") 
 
+            numero_total = 0
+            numero_total += seconds
+        return numero_total
+
 
 def breaker(breaker):
     respond = "n"
     while respond == "n":
-        respond = input("Start Break?")
-
+        respond = input("Start Break?").lower().strip()
 
     if respond == "y":
         seconds = breaker * 60
@@ -75,10 +78,19 @@ def sessions_loop(f,b,s):
     #make a loop for every session until goes to zero
     current_session = 1
     while current_session <= s:
+
         #call the functions responsible for the timer
         print("Current session: " , current_session ,  "/" , s)
-        countdown(f)
-        breaker(b)
-        current_session +=1
+        print("1 - Continue to the next session?")
+        print("2 - Exit")
+        resposta = int(input("Resposta: "))
 
-    print("Congrats, your focus was: ", "{:.2f}".format((f*s)/60)  , " Hours")
+        if(resposta == 1 ):
+            countdown(f)
+            breaker(b)
+            current_session +=1
+        else:
+            print("Congrats")
+            break;
+
+    ##print("Congrats, your focus was: ", "{:.2f}".format((f*s)/60)  , " Hours")
